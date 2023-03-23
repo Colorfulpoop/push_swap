@@ -21,7 +21,7 @@ int	ft_isdigit(int c)
 void	print_error(int *stack)
 {
 	free(stack);
-	ft_printf("Error \n");
+	ft_printf("Error\n");
 	exit(0);
 }
 
@@ -29,7 +29,7 @@ void	checkdb_error(t_stack *stack)
 {
 	free(stack->a);
 	free(stack->b);
-	ft_printf("Error \n");
+	ft_printf("Error\n");
 	exit(0);
 }
 

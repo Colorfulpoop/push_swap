@@ -1,6 +1,11 @@
 SRC = push_swap.c start.c sort.c ./operations/swap.c ./operations/push.c ./operations/rotate.c \
-		./operations/reverse_rotate.c quick_sort_utils.c  quick_sort.c push_swap_utils.c ./bonus/checker.c
+		./operations/reverse_rotate.c quick_sort_utils.c  quick_sort.c push_swap_utils.c \
+		./lib/get_next_line/get_next_line.c ./lib/get_next_line/get_next_line_utils.c checker_utils.c
+SRC_B = start.c sort.c ./operations/swap.c ./operations/push.c ./operations/rotate.c \
+		./operations/reverse_rotate.c quick_sort_utils.c  quick_sort.c push_swap_utils.c \
+		./lib/get_next_line/get_next_line.c ./lib/get_next_line/get_next_line_utils.c checker_utils.c
 OBJ = ${SRC:.c=.o}
+OBJ_B = ${SRC_B:.c=.o}
 NAME = push_swap
 
 CC = gcc -Wall -Wextra -Werror
@@ -17,6 +22,11 @@ $(NAME) : $(OBJ)
 	@make -C $(FT_PRINTF)
 	@make -C $(LIBFT)
 	@$(CC) $(OBJ) $(LIBRARY) -o $(NAME)
+	@mv lib/ft_printf/libftprintf.a bonus
+	@mv lib/libft/libft.a bonus
+	ar rcs push_swap.a $(OBJ_B)
+	@mv push_swap.a bonus
+
 
 clean :
 	@make clean -C $(FT_PRINTF)

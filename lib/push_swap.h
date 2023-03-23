@@ -54,6 +54,10 @@ int		quick_sort_a(t_stack *stack, int dim, int count_r);
 int		ft_isdigit(int c);
 int		ft_atoi(char *str, int *stack);
 
+int		av_len(char **av);
+void	ft_exitb(t_stack *stack);
+void	order(t_stack *stack);
+
 t_stack	*start(int argc, char **argv);
 
 #endif

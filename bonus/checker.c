@@ -10,41 +10,46 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "../lib/push_swap.h"
+#include "../lib/libft/libft.h"
 #include "../lib/get_next_line/get_next_line.h"
 
-int	av_len(char **av)
+int	ft_strcmp(char *s1, char *s2)
 {
-	int	size;
+	int	i;
 
-	size = 1;
-	while (av[size])
-		size++;
-	return (size);
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 void	ex_operations(t_stack *stack, char *operation)
 {
-	if (strncmp(operation, "sa\n"))
+	if (ft_strcmp(operation, "sa\n"))
 		swap_a(stack, 0);
-	else if (strncmp(operation, "sb\n"))
+	else if (ft_strcmp(operation, "sb\n"))
 		swap_b(stack, 0);
-	else if (strncmp(operation, "ss\n"))
+	else if (ft_strcmp(operation, "ss\n"))
 		swap_ss(stack, 0);
-	else if (strncmp(operation, "pa\n"))
+	else if (ft_strcmp(operation, "pa\n"))
 		push_a(stack, 0);
-	else if (strncmp(operation, "pb\n"))
+	else if (ft_strcmp(operation, "pb\n"))
 		push_b(stack, 0);
-	else if (strncmp(operation, "ra\n"))
+	else if (ft_strcmp(operation, "ra\n"))
 		rotate_a(stack, 0);
-	else if (strncmp(operation, "rb\n"))
+	else if (ft_strcmp(operation, "rb\n"))
 		rotate_b(stack, 0);
-	else if (strncmp(operation, "rr\n"))
+	else if (ft_strcmp(operation, "rr\n"))
 		rotate_rr(stack, 0);
-	else if (strncmp(operation, "rra\n"))
+	else if (ft_strcmp(operation, "rra\n"))
 		rra(stack, 0);
-	else if (strncmp(operation, "rrb\n"))
+	else if (ft_strcmp(operation, "rrb\n"))
 		rrb(stack, 0);
-	else if (strncmp(operation, "rrr\n"))
+	else if (ft_strcmp(operation, "rrr\n"))
 		rrr(stack, 0);
 	return ;
 }
@@ -64,34 +69,31 @@ void	read_operations(t_stack *stack)
 
 void	start_check(char **av)
 {
-	t_stack	*stack;
+	t_stack	stack;
 	int		i;
 	int		size;
 
 	size = av_len(av);
-	stack->a = (int *)malloc(sizeof(int) * size);
-	if (!stack->a)
+	stack.a = (int *)malloc(sizeof(int) * size);
+	if (!stack.a)
 		return ;
-	stack->len_a = size;
-	stack->b = (int *)malloc(sizeof(int) * size);
-	if (!stack->b)
+	stack.len_a = size;
+	stack.b = (int *)malloc(sizeof(int) * size);
+	if (!stack.b)
 	{
-		free(stack->a);
+		free(stack.a);
 		return ;
 	}
-	stack->len_b = 0;
+	stack.len_b = 0;
 	i = 0;
 	while (i < size)
 	{
-		stack->a[i] = ft_atoi(av[i], stack->a);
+		stack.a[i] = ft_atoi(av[i], stack.a);
 		i++;
 	}
-	read_operations(stack);
-	if (check_sorted_asc(stack->a, stack->len_a) == 1)
-		ft_printf("OK \n");
-	else
-		ft_printf("KO \n");
-	ft_exit(stack);
+	read_operations(&stack);
+	order(&stack);
+	ft_exitb(&stack);
 }
 
 int	main(int ac, char **av)
@@ -100,6 +102,8 @@ int	main(int ac, char **av)
 	{
 		if (ac == 2)
 			ft_split(av[1], ' ');
+		else
+			av++;
 		start_check(av);
 	}
 	return (0);
