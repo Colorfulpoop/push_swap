@@ -51,6 +51,8 @@ void	ex_operations(t_stack *stack, char *operation)
 		rrb(stack, 0);
 	else if (ft_strcmp(operation, "rrr\n"))
 		rrr(stack, 0);
+	else
+		ft_printf("Error \n");
 	return ;
 }
 

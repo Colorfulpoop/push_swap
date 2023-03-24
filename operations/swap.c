@@ -16,8 +16,6 @@ int	swap_a(t_stack *stack, int flag)
 {
 	int		tmp;
 
-	if (!stack->a[0] || !stack->a[1])
-		return (0);
 	tmp = stack->a[0];
 	stack->a[0] = stack->a[1];
 	stack->a[1] = tmp;
@@ -30,8 +28,6 @@ int	swap_b(t_stack *stack, int flag)
 {
 	int		tmp;
 
-	if (stack->len_b == 0 || stack->len_b == 1)
-		return (0);
 	tmp = stack->b[0];
 	stack->b[0] = stack->b[1];
 	stack->b[1] = tmp;
@@ -44,8 +40,6 @@ int	swap_ss(t_stack *stack, int flag)
 {
 	int	tmp;
 
-	if (!stack->a[0] || !stack->a[1] || !stack->b[0] || !stack->b[1])
-		return (0);
 	tmp = stack->a[0];
 	stack->a[0] = stack->a[1];
 	stack->a[1] = tmp;

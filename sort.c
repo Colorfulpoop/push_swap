@@ -30,8 +30,8 @@ int	is_sorted(t_stack *stack)
 
 void	sort_3nb(t_stack *stack)
 {
-	if ((stack->a[1] < stack->a[0]) && (stack->a[1] < stack->a[2])
-		&& (stack->a[0] < stack->a[2]))
+	if ((stack->a[0] > stack->a[1]) && (stack->a[0] < stack->a[2])
+		&& (stack->a[1] < stack->a[2]))
 		swap_a(stack, 1);
 	else if ((stack->a[1] < stack->a[0]) && (stack->a[1] < stack->a[2])
 		&& (stack->a[0] > stack->a[2]))
